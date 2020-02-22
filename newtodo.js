@@ -1,4 +1,4 @@
-let items = [];
+let items = JSON.parse(localStorage.getItem("items")) ? JSON.parse(localStorage.getItem("items")) : [];
 display();
 let form = document.getElementById("form");
 form.addEventListener("submit", addItem, false);
@@ -39,16 +39,16 @@ function addItem(e) {
     display();
   }
 }
-let html = "";
+
 function display() {
   let list = document.getElementById("list");
   let item;
   let newItems = JSON.parse(localStorage.getItem("items"));
   if (newItems != null) {
-    console.log(newItems);
+    
     for (x = 0; x < newItems.length; x++) {
       item = newItems[x];
-      console.log(item);
+     
 
       list.insertAdjacentHTML(
         "beforeend",
@@ -62,19 +62,14 @@ function display() {
 
 
 function delItem(item) {
-  console.log(typeof item)
-
+ 
   let itemIndex = items.findIndex(i => i.id === item);
   items.splice(itemIndex, 1)
   errMsg.setAttribute('class', 'alert alert-danger  text-center')
   errMsg.innerHTML = 'deleted Todo';
 
-  localStorage.setItem('items', JSON.stringify(items));
-
-  let listItem = document.getElementById(item);
-  let ul = listItem.parentNode;
-
-  ul.removeChild(listItem)
+   localStorage.setItem('items', JSON.stringify(items));
+  
   list.innerHTML = "";
   display();
 }
