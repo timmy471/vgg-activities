@@ -66,7 +66,7 @@ function delItem(item) {
   let itemIndex = items.findIndex(i => i.id === item);
   items.splice(itemIndex, 1)
   errMsg.setAttribute('class', 'alert alert-danger  text-center')
-  errMsg.innerHTML = 'deleted Todo';
+  errMsg.innerHTML = 'Deleted Todo';
 
    localStorage.setItem('items', JSON.stringify(items));
   
